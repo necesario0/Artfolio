@@ -103,33 +103,40 @@ export default function CommissionPage() {
           />
           <span className={styles.paymentHandle}>@epicswagcat</span>
         </div>
+
+        <Link href="/contact" className={styles.requestButton}>
+          Request Commission
+        </Link>
       </div>
 
       {/* RIGHT SIDE: Terms, Do's & Don'ts, Payment */}
       <div className={styles.rightSide}>
-        {/* Do's Individual Dark Container */}
-        <div className={styles.darkContainer}>
-          <h3 className={`${styles.sectionTitle} ${styles.dos}`}>DO&apos;S</h3>
-          <ul className={styles.list}>
-            <li>Original Characters</li>
-            <li>Fanart</li>
-            <li>Kemonomimi</li>
-            <li>Ships</li>
-            <li>Yumeship</li>
-            <li>Semi-NSFW</li>
-          </ul>
-        </div>
+        {/* Do's & Don'ts Row */}
+        <div className={styles.dosDontsWrapper}>
+          {/* Do's Individual Dark Container */}
+          <div className={styles.darkContainer}>
+            <h3 className={`${styles.sectionTitle} ${styles.dos}`}>DO&apos;S</h3>
+            <ul className={styles.list}>
+              <li>Original Characters</li>
+              <li>Fanart</li>
+              <li>Kemonomimi</li>
+              <li>Ships</li>
+              <li>Yumeship</li>
+              <li>Semi-NSFW</li>
+            </ul>
+          </div>
 
-        {/* Don'ts Individual Dark Container */}
-        <div className={styles.darkContainer}>
-          <h3 className={`${styles.sectionTitle} ${styles.donts}`}>DON&apos;TS</h3>
-          <ul className={styles.list}>
-            <li>Full NSFW</li>
-            <li>Gore</li>
-            <li>Furry</li>
-            <li>Mecha</li>
-            <li>Overly complicated designs</li>
-          </ul>
+          {/* Don'ts Individual Dark Container */}
+          <div className={styles.darkContainer}>
+            <h3 className={`${styles.sectionTitle} ${styles.donts}`}>DON&apos;TS</h3>
+            <ul className={styles.list}>
+              <li>Full NSFW</li>
+              <li>Gore</li>
+              <li>Furry</li>
+              <li>Mecha</li>
+              <li>Overly complicated designs</li>
+            </ul>
+          </div>
         </div>
 
         {/* General Terms & Revisions (Standard Theme) */}

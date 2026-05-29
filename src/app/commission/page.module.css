@@ -13,6 +13,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: sticky;
+  top: 6rem;
+  height: fit-content;
 }
 
 .carousel {
@@ -103,6 +106,25 @@
   letter-spacing: 0.05em;
 }
 
+.requestButton {
+  margin-top: 2rem;
+  padding: 1rem 3rem;
+  background-color: var(--foreground);
+  color: var(--background);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--foreground);
+}
+
+.requestButton:hover {
+  background-color: transparent;
+  color: var(--foreground);
+}
+
 /* Right Side: Terms of Service & Payment */
 .rightSide {
   display: flex;
@@ -118,6 +140,12 @@
   padding: 2rem;
   border-radius: 20px;
   width: 100%;
+}
+
+.dosDontsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -198,6 +226,10 @@
   }
 
   .columnGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dosDontsWrapper {
     grid-template-columns: 1fr;
   }
 }
