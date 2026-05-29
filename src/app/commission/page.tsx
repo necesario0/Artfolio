@@ -17,39 +17,33 @@ interface CommissionType {
 const COMMISSION_DATA: CommissionType[] = [
   {
     id: 0,
-    name: 'Illustrations',
-    prices: [
-      { label: 'Full Body', value: '$150' },
-      { label: 'Half Body', value: '$100' },
-      { label: 'Headshot', value: '$60' },
-    ],
+    name: 'Head',
+    prices: [{ label: 'Flat Price', value: '10' }],
   },
   {
     id: 1,
-    name: 'Character Design',
-    prices: [
-      { label: 'Front & Back', value: '$250' },
-      { label: 'Detailed Sheet', value: '$400' },
-      { label: 'Simple Sketch', value: '$80' },
-    ],
+    name: 'Half',
+    prices: [{ label: 'Flat Price', value: '20' }],
   },
   {
     id: 2,
-    name: 'Backgrounds',
-    prices: [
-      { label: 'Complex Scene', value: '$300' },
-      { label: 'Simple/Flat', value: '$120' },
-      { label: 'Concept Art', value: '$200' },
-    ],
+    name: 'Full',
+    prices: [{ label: 'Flat Price', value: '30' }],
   },
   {
     id: 3,
-    name: 'Sketches',
-    prices: [
-      { label: 'Clean Lineart', value: '$50' },
-      { label: 'Rough Sketch', value: '$30' },
-      { label: 'Pencil Study', value: '$40' },
-    ],
+    name: 'Background',
+    prices: [{ label: 'Starting Price', value: '20' }],
+  },
+  {
+    id: 4,
+    name: 'Animation',
+    prices: [{ label: 'Starting Price', value: '60' }],
+  },
+  {
+    id: 5,
+    name: 'GIF',
+    prices: [{ label: 'Flat Price', value: '50' }],
   },
 ];
 
