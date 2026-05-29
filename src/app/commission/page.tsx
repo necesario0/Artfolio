@@ -18,32 +18,32 @@ const COMMISSION_DATA: CommissionType[] = [
   {
     id: 0,
     name: 'Head',
-    prices: [{ label: 'Flat Price', value: '10' }],
+    prices: [{ label: 'Flat Price', value: '$10' }],
   },
   {
     id: 1,
     name: 'Half',
-    prices: [{ label: 'Flat Price', value: '20' }],
+    prices: [{ label: 'Flat Price', value: '$20' }],
   },
   {
     id: 2,
     name: 'Full',
-    prices: [{ label: 'Flat Price', value: '30' }],
+    prices: [{ label: 'Flat Price', value: '$30' }],
   },
   {
     id: 3,
     name: 'Background',
-    prices: [{ label: 'Starting Price', value: '20' }],
+    prices: [{ label: 'Starting Price', value: '$20' }],
   },
   {
     id: 4,
     name: 'Animation',
-    prices: [{ label: 'Starting Price', value: '60' }],
+    prices: [{ label: 'Starting Price', value: '$60' }],
   },
   {
     id: 5,
     name: 'GIF',
-    prices: [{ label: 'Flat Price', value: '50' }],
+    prices: [{ label: 'Flat Price', value: '$50' }],
   },
 ];
 
@@ -93,6 +93,11 @@ export default function CommissionPage() {
               <span className={styles.priceValue}>{item.value}</span>
             </div>
           ))}
+        </div>
+
+        <div className={styles.paymentInfo}>
+          <span className={styles.paymentLabel}>Payment via PayPal</span>
+          <span className={styles.paymentHandle}>@epicswagcat</span>
         </div>
       </div>
 
