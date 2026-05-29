@@ -103,31 +103,71 @@
   letter-spacing: 0.05em;
 }
 
-/* Right Side: Terms of Service */
+/* Right Side: Terms of Service & Payment */
 .rightSide {
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
-  padding-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 2rem;
+  border-left: 1px solid rgba(0,0,0,0.1);
 }
 
-.tosTitle {
+.darkContainer {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.columnGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.sectionTitle {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5rem;
+  color: #fff;
 }
 
-.tosText {
-  white-space: pre-wrap;
-  line-height: 1.8;
-  color: #555;
-  font-size: 0.95rem;
+.dos { color: #aaffaa; }
+.donts { color: #ffaaaa; }
+
+.list {
+  list-style-type: "• ";
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.generalTerms {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--foreground);
+}
+
+.generalTerms h3 {
+  font-family: var(--font-serif);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 968px) {
   .container {
     grid-template-columns: 1fr;
-    gap: 4rem;
   }
   
   .rightSide {
@@ -135,5 +175,9 @@
     padding-left: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 4rem;
+  }
+
+  .columnGrid {
+    grid-template-columns: 1fr;
   }
 }

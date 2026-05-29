@@ -15,7 +15,11 @@ A serverless artist portfolio built with Next.js, TypeScript, and Vanilla CSS, u
     - Sanity Studio initialized and embedded at `/studio`.
     - `artwork` schema defined (title, image, medium, year, description, category).
     - Sanity client and environment variables configured.
-- **Phase 3: Core Pages Development** - [NEXT STEP]
-    - Implement Home page hero and bio.
-    - Create dynamic Gallery grid with Sanity data.
-    - Build Contact/Commission pages with Netlify forms.
+- **Phase 3: Core Pages Development** - [COMPLETED]
+    - Home page with Hero and Bio sections implemented.
+    - Gallery grid with Sanity fetching and Masonry layout active.
+    - Commission page with interactive carousel and terms implemented.
+    - Contact page with minimalist social icons completed.
+- **Phase 4: Refinement & Deployment** - [NEXT STEP]
+    - Final responsive testing.
+    - Deploy to Netlify.

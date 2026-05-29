@@ -105,19 +105,82 @@ export default function CommissionPage() {
         </div>
       </div>
 
-      {/* RIGHT SIDE: Terms of Service */}
+      {/* RIGHT SIDE: Terms, Do's & Don'ts, Payment */}
       <div className={styles.rightSide}>
-        <h2 className={styles.tosTitle}>Terms of Service</h2>
-        <div className={styles.tosText}>
-          {`1. PAYMENT: 50% upfront, 50% after completion.
-2. TIMELINE: 2-4 weeks depending on complexity.
-3. REVISIONS: Up to 3 free revisions during the sketch phase.
-4. USAGE: Personal use only unless a commercial license is purchased.
-5. CANCELLATION: Non-refundable deposit if the work has already started.
+        {/* Do's and Don'ts Dark Container */}
+        <div className={styles.darkContainer}>
+          <div className={styles.columnGrid}>
+            <div>
+              <h3 className={`${styles.sectionTitle} ${styles.dos}`}>Do&apos;s</h3>
+              <ul className={styles.list}>
+                <li>Original Characters</li>
+                <li>Fanart</li>
+                <li>Kemonomimi</li>
+                <li>Ships</li>
+                <li>Yumeship</li>
+                <li>Semi-NSFW</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className={`${styles.sectionTitle} ${styles.donts}`}>Don&apos;ts</h3>
+              <ul className={styles.list}>
+                <li>Full NSFW</li>
+                <li>Gore</li>
+                <li>Furry</li>
+                <li>Mecha</li>
+                <li>Overly complicated designs</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-Please provide a clear description and visual references when submitting your request.
+        {/* Payment Dark Container */}
+        <div className={styles.darkContainer}>
+          <h3 className={styles.sectionTitle}>Payment</h3>
+          <div className={styles.columnGrid}>
+            <div>
+              <h4 style={{ marginBottom: '0.5rem', color: '#ccc', fontSize: '0.8rem', textTransform: 'uppercase' }}>Non-Animated</h4>
+              <ul className={styles.list}>
+                <li>Full payment is required before I start the commission.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: '0.5rem', color: '#ccc', fontSize: '0.8rem', textTransform: 'uppercase' }}>Animated</h4>
+              <ul className={styles.list}>
+                <li>50% upfront before rough animation</li>
+                <li>Remaining 50% before coloring/rendering/compositing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-More details can be discussed via email.`}
+        {/* General Terms & Revisions (Standard Theme) */}
+        <div className={styles.generalTerms}>
+          <h3>General Terms</h3>
+          <ul className={styles.list}>
+            <li>No refunds once the sketch phase has started.</li>
+            <li>Redistributing or claiming my work as your own is prohibited.</li>
+            <li>My artwork may not be used for AI training or NFTs.</li>
+            <li>Please credit me as the artist when posting online.</li>
+            <li>I reserve the right to decline commissions for any reason.</li>
+          </ul>
+
+          <h3>Revisions</h3>
+          <ul className={styles.list}>
+            <li>Revisions are limited to minor adjustments only.</li>
+            <li>Up to 3 free revisions during the sketch phase.</li>
+            <li>Up to 2 free color correction revisions.</li>
+            <li>Major changes or requests for unspecified elements will not be accepted.</li>
+          </ul>
+
+          <h3>Deadlines</h3>
+          <p>Delivery times may vary depending on the commission type, complexity, content, and queue order.</p>
+
+          <h3>Intellectual Property Rights</h3>
+          <ul className={styles.list}>
+            <li>I retain full copyright ownership of the artwork.</li>
+            <li>Finished commissions may be displayed in my portfolio and on my social media pages.</li>
+          </ul>
         </div>
       </div>
     </div>
