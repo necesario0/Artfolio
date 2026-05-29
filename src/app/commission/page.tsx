@@ -107,56 +107,34 @@ export default function CommissionPage() {
 
       {/* RIGHT SIDE: Terms, Do's & Don'ts, Payment */}
       <div className={styles.rightSide}>
-        {/* Do's and Don'ts Dark Container */}
+        {/* Do's Individual Dark Container */}
         <div className={styles.darkContainer}>
-          <div className={styles.columnGrid}>
-            <div>
-              <h3 className={`${styles.sectionTitle} ${styles.dos}`}>Do&apos;s</h3>
-              <ul className={styles.list}>
-                <li>Original Characters</li>
-                <li>Fanart</li>
-                <li>Kemonomimi</li>
-                <li>Ships</li>
-                <li>Yumeship</li>
-                <li>Semi-NSFW</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className={`${styles.sectionTitle} ${styles.donts}`}>Don&apos;ts</h3>
-              <ul className={styles.list}>
-                <li>Full NSFW</li>
-                <li>Gore</li>
-                <li>Furry</li>
-                <li>Mecha</li>
-                <li>Overly complicated designs</li>
-              </ul>
-            </div>
-          </div>
+          <h3 className={`${styles.sectionTitle} ${styles.dos}`}>DO&apos;S</h3>
+          <ul className={styles.list}>
+            <li>Original Characters</li>
+            <li>Fanart</li>
+            <li>Kemonomimi</li>
+            <li>Ships</li>
+            <li>Yumeship</li>
+            <li>Semi-NSFW</li>
+          </ul>
         </div>
 
-        {/* Payment Dark Container */}
+        {/* Don'ts Individual Dark Container */}
         <div className={styles.darkContainer}>
-          <h3 className={styles.sectionTitle}>Payment</h3>
-          <div className={styles.columnGrid}>
-            <div>
-              <h4 style={{ marginBottom: '0.5rem', color: '#ccc', fontSize: '0.8rem', textTransform: 'uppercase' }}>Non-Animated</h4>
-              <ul className={styles.list}>
-                <li>Full payment is required before I start the commission.</li>
-              </ul>
-            </div>
-            <div>
-              <h4 style={{ marginBottom: '0.5rem', color: '#ccc', fontSize: '0.8rem', textTransform: 'uppercase' }}>Animated</h4>
-              <ul className={styles.list}>
-                <li>50% upfront before rough animation</li>
-                <li>Remaining 50% before coloring/rendering/compositing</li>
-              </ul>
-            </div>
-          </div>
+          <h3 className={`${styles.sectionTitle} ${styles.donts}`}>DON&apos;TS</h3>
+          <ul className={styles.list}>
+            <li>Full NSFW</li>
+            <li>Gore</li>
+            <li>Furry</li>
+            <li>Mecha</li>
+            <li>Overly complicated designs</li>
+          </ul>
         </div>
 
         {/* General Terms & Revisions (Standard Theme) */}
         <div className={styles.generalTerms}>
-          <h3>General Terms</h3>
+          <h3 className={styles.sectionTitleLight}>GENERAL TERMS</h3>
           <ul className={styles.list}>
             <li>No refunds once the sketch phase has started.</li>
             <li>Redistributing or claiming my work as your own is prohibited.</li>
@@ -165,7 +143,24 @@ export default function CommissionPage() {
             <li>I reserve the right to decline commissions for any reason.</li>
           </ul>
 
-          <h3>Revisions</h3>
+          <h3 className={styles.sectionTitleLight}>PAYMENT</h3>
+          <div className={styles.paymentGrid}>
+            <div>
+              <h4 style={{ marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>Non-Animated</h4>
+              <ul className={styles.list}>
+                <li>Full payment is required before I start the commission.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ marginBottom: '0.5rem', fontWeight: '600', fontSize: '0.9rem' }}>Animated</h4>
+              <ul className={styles.list}>
+                <li>50% upfront before rough animation</li>
+                <li>Remaining 50% before coloring/rendering/compositing</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 className={styles.sectionTitleLight}>REVISIONS</h3>
           <ul className={styles.list}>
             <li>Revisions are limited to minor adjustments only.</li>
             <li>Up to 3 free revisions during the sketch phase.</li>
@@ -173,10 +168,10 @@ export default function CommissionPage() {
             <li>Major changes or requests for unspecified elements will not be accepted.</li>
           </ul>
 
-          <h3>Deadlines</h3>
+          <h3 className={styles.sectionTitleLight}>DEADLINES</h3>
           <p>Delivery times may vary depending on the commission type, complexity, content, and queue order.</p>
 
-          <h3>Intellectual Property Rights</h3>
+          <h3 className={styles.sectionTitleLight}>INTELLECTUAL PROPERTY RIGHTS</h3>
           <ul className={styles.list}>
             <li>I retain full copyright ownership of the artwork.</li>
             <li>Finished commissions may be displayed in my portfolio and on my social media pages.</li>

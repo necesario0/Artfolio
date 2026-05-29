@@ -118,16 +118,24 @@
   padding: 2rem;
   border-radius: 20px;
   width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .columnGrid {
   display: grid;
+  grid-template-columns: 1fr; /* Stacked inside individual containers */
+  gap: 1rem;
+}
+
+.paymentGrid {
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  margin-top: 1rem;
 }
 
 .sectionTitle {
-  font-family: var(--font-serif);
+...
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -135,6 +143,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 0.5rem;
   color: #fff;
+}
+
+.sectionTitleLight {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.5rem;
+  color: var(--foreground);
 }
 
 .dos { color: #aaffaa; }
