@@ -9,7 +9,6 @@ export const artworkType = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
@@ -19,7 +18,6 @@ export const artworkType = defineType({
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'image',
@@ -33,10 +31,8 @@ export const artworkType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative Text',
-          validation: (Rule) => Rule.required(),
         }
       ],
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'medium',
