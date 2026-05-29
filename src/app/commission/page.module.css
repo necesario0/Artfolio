@@ -1,7 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 8rem 2rem 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
@@ -16,6 +16,8 @@
   position: sticky;
   top: 6rem;
   height: fit-content;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.1s;
 }
 
 .carousel {
@@ -132,6 +134,8 @@
   gap: 2rem;
   padding-left: 2rem;
   border-left: 1px solid rgba(0,0,0,0.1);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.2s;
 }
 
 .darkContainer {
@@ -185,8 +189,8 @@
   color: var(--foreground);
 }
 
-.dos { color: #aaffaa; }
-.donts { color: #ffaaaa; }
+.dos { color: #ffffff; }
+.donts { color: #ffffff; }
 
 .list {
   list-style-type: "• ";
@@ -231,5 +235,16 @@
 
   .dosDontsWrapper {
     grid-template-columns: 1fr;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

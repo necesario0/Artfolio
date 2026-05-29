@@ -1,86 +1,173 @@
 .hero {
+  position: relative;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
   text-align: center;
-  padding: 2rem;
-  background-color: var(--background);
-  color: var(--foreground);
+  overflow: hidden;
+}
+
+.heroBgContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.heroBgImage {
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Gradient that fades to solid white at the bottom to mesh with the next section */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.6) 70%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
 .heroContent {
-  max-width: 800px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes fadeInUpLocal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  animation: fadeInUpLocal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.pfpWrapper {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: -5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+}
+
+.pfpImage {
+  object-fit: cover;
 }
 
 .heroTitle {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
-  margin-bottom: 1rem;
-  line-height: 1.1;
+  font-family: 'Adlery Pro', cursive; /* User specified font */
+  font-size: clamp(3.5rem, 10vw, 5rem);
+  color: #3c2139; /* Dark color for visibility */
+  font-weight: normal;
+  margin: 0;
+  line-height: 0.8;
+  opacity: 0;
 }
 
 .heroSubtitle {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  color: var(--accent);
-  margin-bottom: 2rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  color: #ffffff; /* White text as seen in reference */
+  margin: 1.5rem 0 2.5rem;
+  font-weight: 400;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0;
 }
 
-.ctaButtons {
+.heroLinks {
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin-top: 2rem;
+  gap: 3rem;
+  opacity: 0;
 }
 
-.primaryButton {
-  padding: 0.8rem 2rem;
-  background-color: var(--foreground);
-  color: var(--background);
+.heroLink {
+  color: #ffffff;
   text-decoration: none;
-  border: 1px solid var(--foreground);
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.primaryButton:hover {
-  background-color: transparent;
-  color: var(--foreground);
+.heroLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
-.secondaryButton {
-  padding: 0.8rem 2rem;
-  background-color: transparent;
-  color: var(--foreground);
-  text-decoration: none;
-  border: 1px solid var(--foreground);
-  transition: all 0.3s ease;
-}
-
-.secondaryButton:hover {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-
+/* Bio Section */
 .bioSection {
-  padding: 4rem 2rem;
+  padding: 8rem 2rem;
   max-width: 800px;
   margin: 0 auto;
-  line-height: 1.8;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.bioSection h2 {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
+.bioVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bioTitle {
+  font-family: 'The Seasons', serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  
+  margin-bottom: 3.5rem;
+  color: #1a1a1a;
+}
+
+.bioText {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  color: #4a4a4a;
 }
 
 @media (max-width: 768px) {
-  .ctaButtons {
-    flex-direction: column;
-    gap: 1rem;
+  .hero {
+    height: 70vh;
+  }
+  
+  .pfpWrapper {
+    width: 120px;
+    height: 120px;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+
+  .heroLinks {
+    gap: 1.5rem;
+  }
+
+  .bioSection {
+    padding: 5rem 1.5rem;
   }
 }

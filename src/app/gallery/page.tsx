@@ -19,7 +19,7 @@ export default async function GalleryPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>The Gallery</h1>
+      <h1 className={styles.title}>Art Gallery</h1>
       <GalleryGrid artworks={artworks} />
     </div>
   );

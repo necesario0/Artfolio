@@ -39,26 +39,31 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
   return (
     <>
       <div className={styles.masonry}>
-        {artworks.map((artwork) => (
+        {artworks.map((artwork, index) => (
           <div 
             key={artwork._id} 
-            className={styles.card}
-            onClick={() => setSelectedImage(artwork)}
+            className={styles.animationWrapper}
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
-            <div className={styles.imageWrapper}>
-              {artwork.image && (
-                <img
-                  src={urlFor(artwork.image).width(800).url()}
-                  alt={artwork.image.alt || artwork.title}
-                  className={styles.image}
-                />
-              )}
-            </div>
-            <div className={styles.info}>
-              <h2 className={styles.artworkTitle}>{artwork.title}</h2>
-              <p className={styles.details}>
-                {artwork.medium} {artwork.year ? `• ${artwork.year}` : ''}
-              </p>
+            <div 
+              className={styles.card}
+              onClick={() => setSelectedImage(artwork)}
+            >
+              <div className={styles.imageWrapper}>
+                {artwork.image && (
+                  <img
+                    src={urlFor(artwork.image).width(800).url()}
+                    alt={artwork.image.alt || artwork.title}
+                    className={styles.image}
+                  />
+                )}
+              </div>
+              <div className={styles.info}>
+                <h2 className={styles.artworkTitle}>{artwork.title}</h2>
+                <p className={styles.details}>
+                  {artwork.medium} {artwork.year ? `• ${artwork.year}` : ''}
+                </p>
+              </div>
             </div>
           </div>
         ))}

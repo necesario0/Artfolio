@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export const metadata: Metadata = {
   title: "Artist Portfolio | Artfolio v2",
@@ -15,9 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <LoadingScreen />
         <Navbar />
         {children}
-        {/* We'll add a Footer here later */}
       </body>
     </html>
   );

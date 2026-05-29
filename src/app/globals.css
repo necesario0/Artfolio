@@ -1,3 +1,24 @@
+@font-face {
+  font-family: 'Adlery Pro';
+  src: url('/Adlery-Pro-trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Adlery Swash';
+  src: url('/Adlery-Swash-trial.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'The Seasons';
+  src: url('/The Seasons Bold Italic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
 :root {
   --background-color: #ffffff;
   --text-color: #1a1a1a;
@@ -18,6 +39,8 @@ body {
   font-family: var(--font-family);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -32,4 +55,15 @@ h1, h2, h3, h4, h5, h6 {
 
 main {
   min-height: 100vh;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
