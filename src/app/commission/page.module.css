@@ -1,0 +1,116 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  min-height: 80vh;
+}
+
+/* Left Side: Interactive Carousel & Prices */
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  position: relative;
+}
+
+.box {
+  background: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.sideBox {
+  width: 80px;
+  height: 110px;
+  opacity: 0.4;
+  transform: scale(0.9);
+}
+
+.centerBox {
+  width: 150px;
+  height: 200px;
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--foreground);
+}
+
+.typeLabel {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.priceList {
+  width: 100%;
+  max-width: 300px;
+}
+
+.priceItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.priceLabel {
+  font-weight: 500;
+}
+
+.priceValue {
+  color: var(--accent);
+}
+
+/* Right Side: Terms of Service */
+.rightSide {
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 4rem;
+}
+
+.tosTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tosText {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 968px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .rightSide {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 4rem;
+  }
+}
