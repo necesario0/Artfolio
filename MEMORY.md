@@ -11,12 +11,11 @@ A serverless artist portfolio built with Next.js, TypeScript, and Vanilla CSS, u
     - Basic `globals.css` with "Art Gallery" variables set up.
     - `Navbar` component and responsive `layout.tsx` created.
     - `Home` page placeholder implemented.
-- **Phase 2: CMS Setup (Sanity)** - [NEXT STEP]
-
-## Key Paths
-- **Frontend Source:** `C:\PROJECT\artfolio_v2\src`
-- **Implementation Plan:** `C:\Users\HP\.gemini\tmp\artfolio-v2\fa99508a-8200-4ef3-ae6f-f3da96a43bcf\plans/artfolio-architecture-plan.md`
-
-## Notes for Next Session
-- Pick up with `npx sanity@latest init` to set up the CMS.
-- The development server was left running (`npm run dev`).
+- **Phase 2: CMS Setup (Sanity)** - [COMPLETED]
+    - Sanity Studio initialized and embedded at `/studio`.
+    - `artwork` schema defined (title, image, medium, year, description, category).
+    - Sanity client and environment variables configured.
+- **Phase 3: Core Pages Development** - [NEXT STEP]
+    - Implement Home page hero and bio.
+    - Create dynamic Gallery grid with Sanity data.
+    - Build Contact/Commission pages with Netlify forms.
