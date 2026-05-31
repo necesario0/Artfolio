@@ -152,7 +152,7 @@
 }
 
 .bioTitle {
-  font-family: 'The Seasons', serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.8rem, 6vw, 2.2rem);
   font-weight: 300;
   letter-spacing: 0.1em;
@@ -172,7 +172,7 @@
 
 .softwareHeader {
   margin-top: 4rem;
-  font-family: 'The Seasons', serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.1rem, 4vw, 1.2rem);
   letter-spacing: 0.1em;
   color: #1a1a1a;
