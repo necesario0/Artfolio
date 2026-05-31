@@ -29,7 +29,7 @@ interface Artwork {
 export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
   const [selectedItem, setSelectedItem] = useState<Artwork | null>(null);
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
-  const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set());
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
   // Compute unique tags from all artworks
   const uniqueTags = useMemo(() => {
@@ -40,28 +40,22 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
     return Array.from(tags).sort();
   }, [artworks]);
 
-  // Toggle filter logic
+  // Toggle filter logic (Single Select)
   const toggleFilter = (tag: string) => {
-    const newFilters = new Set(activeFilters);
-    if (tag === 'All') {
-      newFilters.clear();
+    if (tag === 'All' || activeFilter === tag) {
+      setActiveFilter(null);
     } else {
-      if (newFilters.has(tag)) {
-        newFilters.delete(tag);
-      } else {
-        newFilters.add(tag);
-      }
+      setActiveFilter(tag);
     }
-    setActiveFilters(newFilters);
   };
 
-  // Filter artworks based on active filters (Inclusive - shows if it has ANY of the selected tags)
+  // Filter artworks based on active filter
   const filteredArtworks = useMemo(() => {
-    if (activeFilters.size === 0) return artworks;
+    if (!activeFilter) return artworks;
     return artworks.filter((artwork) => 
-      artwork.tags?.some((tag) => activeFilters.has(tag))
+      artwork.tags?.includes(activeFilter)
     );
-  }, [activeFilters, artworks]);
+  }, [activeFilter, artworks]);
 
   // Close lightbox on Escape key
   useEffect(() => {
@@ -109,7 +103,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
       {uniqueTags.length > 0 && (
         <div className={styles.filterBar}>
           <button 
-            className={`${styles.filterButton} ${activeFilters.size === 0 ? styles.activeFilter : ''}`}
+            className={`${styles.filterButton} ${!activeFilter ? styles.activeFilter : ''}`}
             onClick={() => toggleFilter('All')}
           >
             All
@@ -117,7 +111,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
           {uniqueTags.map((tag) => (
             <button
               key={tag}
-              className={`${styles.filterButton} ${activeFilters.has(tag) ? styles.activeFilter : ''}`}
+              className={`${styles.filterButton} ${activeFilter === tag ? styles.activeFilter : ''}`}
               onClick={() => toggleFilter(tag)}
             >
               {tag}
