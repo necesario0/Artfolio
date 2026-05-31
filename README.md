@@ -16,6 +16,9 @@ A modern, high-performance portfolio built for artists and animators. Fully dyna
 - **📱 Mobile-First Design**: Fully responsive with a custom hamburger menu and fluid typography.
 - **🛡️ Secure Architecture**: Uses Headless CMS patterns with authorized CORS origins.
 
+---
+**Note**: This project was developed and optimized with the assistance of **Gemini CLI**.
+
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js 15 (App Router)
