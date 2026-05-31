@@ -9,7 +9,9 @@ const ARTWORKS_QUERY = `*[_type == "artwork"] | order(_createdAt desc) {
   _id,
   title,
   "slug": slug.current,
+  type,
   image,
+  "videoUrl": videoFile.asset->url,
   medium,
   year,
   tags

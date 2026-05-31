@@ -22,8 +22,22 @@ export const artworkType = defineType({
       validation: (Rule) => Rule.required().error('A slug is required. Click "Generate" if you have a title.'),
     }),
     defineField({
+      name: 'type',
+      title: 'Media Type',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Image', value: 'image' },
+          { title: 'Video', value: 'video' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'image',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Thumbnail / Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -37,6 +51,16 @@ export const artworkType = defineType({
         }
       ],
       validation: (Rule) => Rule.required().error('An image is required for an artwork entry.'),
+    }),
+    defineField({
+      name: 'videoFile',
+      title: 'Video File',
+      type: 'file',
+      options: {
+        accept: 'video/*',
+      },
+      hidden: ({ document }) => document?.type !== 'video',
+      description: 'Upload a video file (MP4, MOV, etc.) for animations.',
     }),
     defineField({
       name: 'medium',

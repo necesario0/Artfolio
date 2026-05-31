@@ -17,14 +17,16 @@ interface SanityImage {
 interface Artwork {
   _id: string;
   title: string;
+  type: 'image' | 'video';
   image: SanityImage;
+  videoUrl?: string;
   medium?: string;
   year?: string;
   tags?: string[];
 }
 
 export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
-  const [selectedImage, setSelectedImage] = useState<Artwork | null>(null);
+  const [selectedItem, setSelectedItem] = useState<Artwork | null>(null);
   const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set());
 
   // Compute unique tags from all artworks
@@ -62,7 +64,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
   // Close lightbox on Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedImage(null);
+      if (e.key === 'Escape') setSelectedItem(null);
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
@@ -116,20 +118,32 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
           >
             <div 
               className={styles.card}
-              onClick={() => setSelectedImage(artwork)}
+              onClick={() => setSelectedItem(artwork)}
             >
               <div className={styles.imageWrapper}>
-                {artwork.image && (
-                  <Image
-                    src={urlFor(artwork.image).width(800).url()}
-                    alt={artwork.image.alt || artwork.title}
-                    width={800}
-                    height={1000}
+                {artwork.type === 'video' && artwork.videoUrl ? (
+                  <video 
+                    src={artwork.videoUrl}
+                    poster={urlFor(artwork.image).width(800).url()}
                     className={styles.image}
-                    priority={index < 4}
-                    loading={index < 4 ? 'eager' : 'lazy'}
-                    sizes="(max-width: 600px) 95vw, (max-width: 900px) 45vw, 30vw"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                   />
+                ) : (
+                  artwork.image && (
+                    <Image
+                      src={urlFor(artwork.image).width(800).url()}
+                      alt={artwork.image.alt || artwork.title}
+                      width={800}
+                      height={1000}
+                      className={styles.image}
+                      priority={index < 4}
+                      loading={index < 4 ? 'eager' : 'lazy'}
+                      sizes="(max-width: 600px) 95vw, (max-width: 900px) 45vw, 30vw"
+                    />
+                  )
                 )}
               </div>
               <div className={styles.info}>
@@ -151,20 +165,31 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
+      {selectedItem && (
         <div 
           className={styles.lightboxOverlay}
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedItem(null)}
         >
           <div className={styles.lightboxContent}>
             <button className={styles.closeButton}>&times;</button>
-            <Image
-              src={urlFor(selectedImage.image).width(1600).url()}
-              alt={selectedImage.image.alt || selectedImage.title}
-              width={1600}
-              height={1600}
-              className={styles.lightboxImage}
-            />
+            {selectedItem.type === 'video' && selectedItem.videoUrl ? (
+              <video 
+                src={selectedItem.videoUrl}
+                className={styles.lightboxImage}
+                controls
+                autoPlay
+                playsInline
+                onClick={(e) => e.stopPropagation()}
+              />
+            ) : (
+              <Image
+                src={urlFor(selectedItem.image).width(1600).url()}
+                alt={selectedItem.image.alt || selectedItem.title}
+                width={1600}
+                height={1600}
+                className={styles.lightboxImage}
+              />
+            )}
           </div>
         </div>
       )}
