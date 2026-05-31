@@ -57,7 +57,7 @@ export default function Navbar({ commissionsOpen = true }: { commissionsOpen?: b
       <ul className={`${styles.links} ${isMenuOpen ? styles.linksVisible : ''}`}>
         <li><Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link></li>
         <li><Link href="/gallery" onClick={() => setIsMenuOpen(false)}>Gallery</Link></li>
-        {commissionsOpen && <li><Link href="/commission" onClick={() => setIsMenuOpen(false)}>Commission</Link></li>}
+        <li><Link href="/commission" onClick={() => setIsMenuOpen(false)}>Commission</Link></li>
         <li><Link href="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link></li>
       </ul>
     </nav>
