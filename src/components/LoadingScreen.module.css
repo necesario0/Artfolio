@@ -18,20 +18,8 @@
 }
 
 .text {
-  font-family: 'Adlery Swash', cursive;
+  font-family: var(--font-cursive-swash);
   font-size: clamp(3rem, 10vw, 6rem);
   color: #1a1a1a;
-  animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  opacity: 0;
-}
-
-@keyframes slideInUp {
-  0% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  opacity: 1;
 }

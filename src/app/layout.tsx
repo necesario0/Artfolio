@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
+import NavbarWrapper from "@/components/NavbarWrapper";
 import Navbar from "@/components/Navbar";
-import LoadingScreen from "@/components/LoadingScreen";
+import { adleryPro, adlerySwash, theSeasons } from "./fonts";
 
 export const metadata: Metadata = {
-  title: "Artist Portfolio | Artfolio v2",
+  title: "chilovesyuu",
   description: "A professional portfolio showcasing fine art and digital illustrations.",
 };
 
@@ -14,10 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <LoadingScreen />
-        <Navbar />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${adleryPro.variable} ${adlerySwash.variable} ${theSeasons.variable}`}>
+        <Suspense fallback={<Navbar commissionsOpen={true} />}>
+          <NavbarWrapper />
+        </Suspense>
         {children}
       </body>
     </html>

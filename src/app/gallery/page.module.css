@@ -5,17 +5,53 @@
 }
 
 .title {
-  font-family: 'The Seasons', serif;
-  font-size: 3rem;
-  margin-bottom: 3rem;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  margin-bottom: 2rem;
   text-align: center;
   animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.filterButton {
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: white;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--foreground);
+}
+
+.filterButton:hover {
+  border-color: var(--foreground);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.activeFilter {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+.activeFilter:hover {
+  background: #222222 !important;
 }
 
 /* Masonry Layout using CSS Columns */
 .masonry {
   columns: 3 300px;
   column-gap: 1.5rem;
+  width: 100%;
 }
 
 .animationWrapper {
@@ -66,20 +102,35 @@
 }
 
 .info {
-  padding: 1rem;
+  padding: 1.25rem;
 }
 
 .artworkTitle {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  margin-bottom: 0.35rem;
 }
 
 .details {
-  font-size: 0.8rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tagBadge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+  color: var(--accent);
 }
 
 /* Lightbox Styles */
@@ -93,7 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 9999;
   cursor: zoom-out;
   padding: 2rem;
 }
@@ -128,8 +179,31 @@
   color: var(--accent);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+  .container {
+    padding: 6rem 1.5rem 3rem;
+  }
+
   .masonry {
-    columns: 1;
+    columns: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 5rem 1.25rem 2rem;
+  }
+
+  .masonry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .animationWrapper {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 0;
   }
 }

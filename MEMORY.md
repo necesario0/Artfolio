@@ -4,22 +4,14 @@
 A serverless artist portfolio built with Next.js, TypeScript, and Vanilla CSS, using Sanity CMS for content and Netlify for hosting/forms.
 
 ## Current Status
-- **Phase 1: Project Initialization** - [COMPLETED]
-    - Next.js 15+ (App Router) initialized.
-    - TypeScript configured.
-    - Tailwind CSS removed in favor of Vanilla CSS (CSS Modules).
-    - Basic `globals.css` with "Art Gallery" variables set up.
-    - `Navbar` component and responsive `layout.tsx` created.
-    - `Home` page placeholder implemented.
-- **Phase 2: CMS Setup (Sanity)** - [COMPLETED]
-    - Sanity Studio initialized and embedded at `/studio`.
-    - `artwork` schema defined (title, image, medium, year, description, category).
-    - Sanity client and environment variables configured.
-- **Phase 3: Core Pages Development** - [COMPLETED]
-    - Home page with Hero and Bio sections implemented.
-    - Gallery grid with Sanity fetching and Masonry layout active.
-    - Commission page with interactive carousel and terms implemented.
-    - Contact page with minimalist social icons completed.
-- **Phase 4: Refinement & Deployment** - [NEXT STEP]
-    - Final responsive testing.
-    - Deploy to Netlify.
+- **CMS Migration [COMPLETE]**: Commissions tiers and "Commissions Open" toggle are fully managed via Sanity Studio.
+- **Gallery Enhancements [COMPLETE]**: Dynamic multi-select tag filtering (OR logic) implemented.
+- **Navbar [FIXED]**: Implemented hamburger menu and responsive dropdown for mobile screens.
+- **Performance [OPTIMIZED]**: Lighthouse LCP issues resolved by optimizing font loading and animations.
+- **Branding [UPDATED]**: Project renamed to **chilovesyuu**.
+
+## Deployment Plan
+1. **Commit & Push**: Commit all staged changes and push to GitHub.
+2. **Vercel Setup**: Import the repository to Vercel.
+3. **Environment Variables**: Configure Sanity Project ID, Dataset, and API Read Token in Vercel.
+4. **Sanity CORS**: Add the Vercel deployment URL to Sanity's CORS settings.

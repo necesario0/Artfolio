@@ -57,17 +57,14 @@ export const artworkType = defineType({
       type: 'text',
     }),
     defineField({
-      name: 'category',
-      title: 'Category',
-      type: 'string',
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
       options: {
-        list: [
-          { title: 'Paintings', value: 'paintings' },
-          { title: 'Sketches', value: 'sketches' },
-          { title: 'Digital', value: 'digital' },
-        ],
+        layout: 'tags',
       },
-      validation: (Rule) => Rule.required().error('Please select a category.'),
+      validation: (Rule) => Rule.min(1).error('Please add at least one tag.'),
     }),
   ],
   preview: {

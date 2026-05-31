@@ -8,15 +8,15 @@ export default function LoadingScreen() {
   const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    // Start fading out after 1 second
+    // Start fading out after 0.7 seconds
     const fadeTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 1000);
+    }, 700);
 
-    // Completely remove from DOM after fade animation completes (0.5s)
+    // Completely remove from DOM after fade animation completes (0.4s)
     const removeTimer = setTimeout(() => {
       setShouldRender(false);
-    }, 1500);
+    }, 1100);
 
     return () => {
       clearTimeout(fadeTimer);

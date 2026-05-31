@@ -10,7 +10,7 @@ const ARTWORKS_QUERY = `*[_type == "artwork"] | order(_createdAt desc) {
   image,
   medium,
   year,
-  category
+  tags
 }`;
 
 export default async function GalleryPage() {
@@ -18,9 +18,9 @@ export default async function GalleryPage() {
   const artworks = await client.fetch(ARTWORKS_QUERY);
 
   return (
-    <div className={styles.container}>
+    <main className={styles.container}>
       <h1 className={styles.title}>Art Gallery</h1>
       <GalleryGrid artworks={artworks} />
-    </div>
+    </main>
   );
 }

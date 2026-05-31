@@ -60,24 +60,27 @@
 }
 
 .pfpWrapper {
-  width: 160px;
-  height: 160px;
+  width: clamp(120px, 25vw, 160px);
+  aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;
-  margin-top: -5rem;
+  margin-top: clamp(0rem, -5vw, -5rem);
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   opacity: 0;
+  position: relative;
 }
 
 .pfpImage {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .heroTitle {
-  font-family: 'Adlery Pro', cursive; /* User specified font */
+  font-family: var(--font-cursive-swash);
   font-size: clamp(3.5rem, 10vw, 5rem);
-  color: #3c2139; /* Dark color for visibility */
+  color: #000000;
   font-weight: normal;
   margin: 0;
   line-height: 0.8;
@@ -85,9 +88,9 @@
 }
 
 .heroSubtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3vw, 1.2rem);
   letter-spacing: 0.15em;
-  color: #ffffff; /* White text as seen in reference */
+  color: #000000;
   margin: 1.5rem 0 2.5rem;
   font-weight: 400;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -96,27 +99,45 @@
 
 .heroLinks {
   display: flex;
-  gap: 3rem;
+  gap: clamp(1.5rem, 5vw, 4rem);
   opacity: 0;
 }
 
 .heroLink {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   font-weight: 500;
-  transition: opacity 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.linkArrow {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: serif;
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 .heroLink:hover {
-  opacity: 0.8;
-  text-decoration: underline;
+  transform: translateX(8px);
+  color: #767676;
+}
+
+.heroLink:hover .linkArrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Bio Section */
 .bioSection {
-  padding: 8rem 2rem;
+  padding: clamp(4rem, 10vw, 8rem) 1.5rem;
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
@@ -132,7 +153,7 @@
 
 .bioTitle {
   font-family: 'The Seasons', serif;
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 6vw, 2.2rem);
   font-weight: 300;
   letter-spacing: 0.1em;
   
@@ -145,8 +166,56 @@
   flex-direction: column;
   gap: 2rem;
   line-height: 1.8;
-  font-size: 1.1rem;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
   color: #4a4a4a;
+}
+
+.softwareHeader {
+  margin-top: 4rem;
+  font-family: 'The Seasons', serif;
+  font-size: clamp(1.1rem, 4vw, 1.2rem);
+  letter-spacing: 0.1em;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+
+.softwareGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: -1.5rem;
+}
+
+.softwareLogoWrapper {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.softwareLogo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.softwareLogoWrapper:hover {
+  transform: scale(1.2);
+}
+
+.softwareLogoWrapper:hover .softwareLogo {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
@@ -169,5 +238,20 @@
 
   .bioSection {
     padding: 5rem 1.5rem;
+  }
+
+  .softwareGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 2rem 1.5rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .softwareLogoWrapper {
+    width: 40px;
+    height: 40px;
   }
 }

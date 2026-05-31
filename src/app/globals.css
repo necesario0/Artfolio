@@ -1,24 +1,3 @@
-@font-face {
-  font-family: 'Adlery Pro';
-  src: url('/Adlery-Pro-trial.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Adlery Swash';
-  src: url('/Adlery-Swash-trial.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'The Seasons';
-  src: url('/The Seasons Bold Italic.ttf') format('truetype');
-  font-weight: bold;
-  font-style: italic;
-}
-
 :root {
   --background-color: #ffffff;
   --text-color: #1a1a1a;
@@ -41,6 +20,11 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
+
+  /* Map next/font variables to human-readable names */
+  --font-serif: var(--font-the-seasons), serif;
+  --font-cursive: var(--font-adlery-pro), cursive;
+  --font-cursive-swash: var(--font-adlery-swash), cursive;
 }
 
 a {

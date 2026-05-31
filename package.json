@@ -1,5 +1,5 @@
 {
-  "name": "artfolio_v2",
+  "name": "chilovesyuu",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,8 +15,7 @@
     "next-sanity": "^12.4.5",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sanity": "^5.28.0",
-    "styled-components": "^6.4.2"
+    "sanity": "^5.28.0"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   position: sticky;
-  top: 6rem;
+  top: 8rem;
   height: fit-content;
   animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: 0.1s;
@@ -24,40 +24,106 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: clamp(0.5rem, 3vw, 1.5rem);
   margin-bottom: 2rem;
   width: 100%;
   position: relative;
+  perspective: 1000px;
 }
 
 .box {
   background: #eee;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.centerBox:hover .carouselImage {
+  transform: scale(1.05);
+}
+
+.clickHint {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
 }
 
 .sideBox {
-  width: 80px;
-  height: 110px;
+  width: clamp(60px, 15vw, 100px);
+  height: clamp(80px, 20vw, 140px);
   opacity: 0.4;
   transform: scale(0.9);
 }
 
+.sideBox:first-child {
+  animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.sideBox:last-child {
+  animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
 .centerBox {
-  width: 150px;
-  height: 200px;
+  width: clamp(120px, 30vw, 180px);
+  height: clamp(160px, 45vw, 250px);
   opacity: 1;
   transform: scale(1.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   border: 2px solid var(--foreground);
+  z-index: 2;
+  animation: spinIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+@keyframes spinIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1) translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px) scale(0.8);
+  }
+  100% {
+    opacity: 0.4;
+    transform: translateX(0) scale(0.9);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px) scale(0.8);
+  }
+  100% {
+    opacity: 0.4;
+    transform: translateX(0) scale(0.9);
+  }
 }
 
 .typeLabel {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
   text-transform: uppercase;
   letter-spacing: 0.2em;
   margin-bottom: 2rem;
@@ -127,6 +193,83 @@
   color: var(--foreground);
 }
 
+.navigationButtons {
+  display: none;
+}
+
+.navBtn {
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--foreground);
+}
+
+.navBtn:hover {
+  background: var(--foreground);
+  color: #fff;
+}
+
+.loadingContainer, .closedContainer {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.closedContent {
+  text-align: center;
+  max-width: 500px;
+}
+
+.closedContent .message {
+  margin-bottom: 2rem;
+}
+
+/* Lightbox Styles */
+.lightboxOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  padding: 2rem;
+}
+
+.lightboxContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.lightboxImage {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.closeButton {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
 /* Right Side: Terms of Service & Payment */
 .rightSide {
   display: flex;
@@ -139,11 +282,27 @@
 }
 
 .darkContainer {
-  background-color: #111;
-  color: #fff;
+  background-color: #fff;
+  color: var(--foreground);
   padding: 2rem;
   border-radius: 20px;
   width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.darkContainer:hover {
+  background-color: #000;
+  color: #fff;
+  transform: scale(1.05);
+  border-color: #000;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.darkContainer:hover .sectionTitle {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .dosDontsWrapper {
@@ -172,9 +331,9 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 0.5rem;
-  color: #fff;
+  color: var(--foreground);
 }
 
 .sectionTitleLight {
@@ -188,9 +347,6 @@
   padding-bottom: 0.5rem;
   color: var(--foreground);
 }
-
-.dos { color: #ffffff; }
-.donts { color: #ffffff; }
 
 .list {
   list-style-type: "• ";
@@ -220,8 +376,16 @@
 @media (max-width: 968px) {
   .container {
     grid-template-columns: 1fr;
+    padding: 7rem 1.5rem 4rem;
   }
   
+  .leftSide {
+    position: relative;
+    top: 0;
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
   .rightSide {
     border-left: none;
     padding-left: 0;
@@ -235,6 +399,36 @@
 
   .dosDontsWrapper {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 6rem 1rem 3rem;
+  }
+
+  .carousel {
+    gap: 0.5rem;
+  }
+
+  .typeLabel {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .carousel {
+    gap: 0.25rem;
+  }
+
+  .sideBox {
+    width: 60px;
+    height: 85px;
+  }
+
+  .centerBox {
+    width: 120px;
+    height: 170px;
   }
 }
 
