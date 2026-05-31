@@ -196,5 +196,3 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
     </>
   );
 }
-);
-}
