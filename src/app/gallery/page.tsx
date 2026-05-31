@@ -2,6 +2,8 @@ import { client } from '@/sanity/lib/client';
 import GalleryGrid from './GalleryGrid';
 import styles from './page.module.css';
 
+export const revalidate = 0; // Always fetch fresh data
+
 // This is a GROQ query to fetch all artworks from Sanity
 const ARTWORKS_QUERY = `*[_type == "artwork"] | order(_createdAt desc) {
   _id,
