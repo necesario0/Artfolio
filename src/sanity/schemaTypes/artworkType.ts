@@ -29,7 +29,7 @@ export const artworkType = defineType({
         list: [
           { title: 'Image', value: 'image' },
           { title: 'Video', value: 'video' },
-          { title: 'Storybook', value: 'storybook' },
+          { title: 'Multiple Images', value: 'storybook' },
         ],
         layout: 'radio',
       },

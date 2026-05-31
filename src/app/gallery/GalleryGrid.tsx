@@ -169,7 +169,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
                 )}
                 {artwork.type === 'storybook' && (
                   <div className={styles.tagBadge} style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.6)', color: 'white' }}>
-                    📖 Storybook
+                    📖 Multiple Images
                   </div>
                 )}
               </div>
