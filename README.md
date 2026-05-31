@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# chilovesyuu | Artist Portfolio
 
-## Getting Started
+A modern, high-performance portfolio built for artists and animators. Fully dynamic and managed via Sanity CMS.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Sanity](https://img.shields.io/badge/Sanity-CMS-F03E2F?style=for-the-badge&logo=sanity&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Hosted-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
+## ✨ Features
+
+- **🚀 Performance Optimized**: Optimized for Lighthouse scores (90+) with Next.js 15, AVIF/WebP support, and smart font preloading.
+- **🎨 Dynamic Gallery**: Supports high-quality images, **MP4/MOV videos**, and **Multiple Image** (Storybook) entries with interactive navigation.
+- **💼 Commission System**: Interactive pricing carousel managed entirely via Sanity Studio.
+- **⚙️ Live CMS Syncing**: Global toggles (like "Commissions Open") update the website in real-time without redeploying.
+- **📱 Mobile-First Design**: Fully responsive with a custom hamburger menu and fluid typography.
+- **🛡️ Secure Architecture**: Uses Headless CMS patterns with authorized CORS origins.
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **CMS**: Sanity.io
+- **Styling**: Vanilla CSS (CSS Modules)
+- **Language**: TypeScript
+- **Fonts**: The Seasons (Serif), Adlery Pro (Cursive), Inter (Sans-serif)
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/necesario0/Artfolio.git
+cd artfolio_v2
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Environment Variables
+Create a `.env.local` file in the root:
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
+NEXT_PUBLIC_SANITY_DATASET="production"
+SANITY_API_READ_TOKEN="your_token"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the development server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-## Learn More
+## 📁 Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app`: Next.js App Router (Pages and Layouts)
+- `src/components`: Reusable UI components (Navbar, LoadingScreen, etc.)
+- `src/sanity`: Sanity CMS configuration and schemas
+- `public`: Static assets (Fonts and placeholder images)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📖 Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For detailed information on how to manage content, update schemas, and deploy the project, please refer to [DOCUMENTATION.md](./DOCUMENTATION.md).
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Built with ❤️ for artists.
