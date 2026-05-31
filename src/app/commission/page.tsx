@@ -2,6 +2,8 @@ import { client } from '@/sanity/lib/client';
 import CommissionClient from './CommissionClient';
 import styles from './page.module.css';
 
+export const revalidate = 0; // Always fetch fresh data
+
 interface SanityImage {
   _type: 'image';
   asset: {
