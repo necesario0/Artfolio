@@ -1,6 +1,8 @@
 import { client } from "@/sanity/lib/client";
 import Navbar from "@/components/Navbar";
 
+export const revalidate = 0; // Always fetch fresh data
+
 const SETTINGS_QUERY = `*[_type == "siteSettings"][0]{commissionsOpen}`;
 
 export default async function NavbarWrapper() {
