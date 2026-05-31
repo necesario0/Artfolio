@@ -1,4 +1,4 @@
-# chilovesyuu | Artist Portfolio
+# Artist Portfolio
 
 A modern, high-performance portfolio developed as a personal project for my girlfriend. This artfolio is designed specifically for artists and animators, featuring a fully dynamic workflow powered by Sanity CMS and Next.js 15.
 
