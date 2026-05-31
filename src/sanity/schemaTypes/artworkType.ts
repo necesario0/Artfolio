@@ -29,6 +29,7 @@ export const artworkType = defineType({
         list: [
           { title: 'Image', value: 'image' },
           { title: 'Video', value: 'video' },
+          { title: 'Storybook', value: 'storybook' },
         ],
         layout: 'radio',
       },
@@ -37,12 +38,20 @@ export const artworkType = defineType({
     }),
     defineField({
       name: 'image',
-      title: 'Thumbnail / Image',
+      title: 'Thumbnail / Cover Image',
       type: 'image',
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required().error('An image is required for an artwork entry.'),
+      validation: (Rule) => Rule.required().error('A cover image is required.'),
+    }),
+    defineField({
+      name: 'images',
+      title: 'Storybook Pages',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+      hidden: ({ document }) => document?.type !== 'storybook',
+      description: 'Add multiple pages for your storybook.',
     }),
     defineField({
       name: 'videoFile',

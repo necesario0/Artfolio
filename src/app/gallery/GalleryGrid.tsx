@@ -17,8 +17,9 @@ interface SanityImage {
 interface Artwork {
   _id: string;
   title: string;
-  type: 'image' | 'video';
+  type: 'image' | 'video' | 'storybook';
   image: SanityImage;
+  images?: SanityImage[];
   videoUrl?: string;
   medium?: string;
   year?: string;
@@ -27,6 +28,7 @@ interface Artwork {
 
 export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
   const [selectedItem, setSelectedItem] = useState<Artwork | null>(null);
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set());
 
   // Compute unique tags from all artworks
@@ -64,11 +66,31 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
   // Close lightbox on Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedItem(null);
+      if (e.key === 'Escape') {
+        setSelectedItem(null);
+        setCurrentPageIndex(0);
+      }
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
+
+  const openLightbox = (item: Artwork) => {
+    setSelectedItem(item);
+    setCurrentPageIndex(0);
+  };
+
+  const nextPage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedItem?.images) return;
+    setCurrentPageIndex((prev) => (prev + 1) % selectedItem.images!.length);
+  };
+
+  const prevPage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedItem?.images) return;
+    setCurrentPageIndex((prev) => (prev - 1 + selectedItem.images!.length) % selectedItem.images!.length);
+  };
 
   if (artworks.length === 0) {
     return (
@@ -118,7 +140,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
           >
             <div 
               className={styles.card}
-              onClick={() => setSelectedItem(artwork)}
+              onClick={() => openLightbox(artwork)}
             >
               <div className={styles.imageWrapper}>
                 {artwork.type === 'video' && artwork.videoUrl ? (
@@ -135,7 +157,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
                   artwork.image && (
                     <Image
                       src={urlFor(artwork.image).width(800).url()}
-                      alt={artwork.image.alt || artwork.title}
+                      alt={artwork.title}
                       width={800}
                       height={1000}
                       className={styles.image}
@@ -144,6 +166,11 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
                       sizes="(max-width: 600px) 95vw, (max-width: 900px) 45vw, 30vw"
                     />
                   )
+                )}
+                {artwork.type === 'storybook' && (
+                  <div className={styles.tagBadge} style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.6)', color: 'white' }}>
+                    📖 Storybook
+                  </div>
                 )}
               </div>
               <div className={styles.info}>
@@ -168,10 +195,20 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
       {selectedItem && (
         <div 
           className={styles.lightboxOverlay}
-          onClick={() => setSelectedItem(null)}
+          onClick={() => {
+            setSelectedItem(null);
+            setCurrentPageIndex(0);
+          }}
         >
-          <div className={styles.lightboxContent}>
-            <button className={styles.closeButton}>&times;</button>
+          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+            <button 
+              className={styles.closeButton}
+              onClick={() => {
+                setSelectedItem(null);
+                setCurrentPageIndex(0);
+              }}
+            >&times;</button>
+            
             {selectedItem.type === 'video' && selectedItem.videoUrl ? (
               <video 
                 src={selectedItem.videoUrl}
@@ -179,8 +216,22 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
                 controls
                 autoPlay
                 playsInline
-                onClick={(e) => e.stopPropagation()}
               />
+            ) : selectedItem.type === 'storybook' && selectedItem.images && selectedItem.images.length > 0 ? (
+              <>
+                <button className={`${styles.navButton} ${styles.prevButton}`} onClick={prevPage}>←</button>
+                <Image
+                  src={urlFor(selectedItem.images[currentPageIndex]).width(1600).url()}
+                  alt={`${selectedItem.title} - Page ${currentPageIndex + 1}`}
+                  width={1600}
+                  height={1600}
+                  className={styles.lightboxImage}
+                />
+                <button className={`${styles.navButton} ${styles.nextButton}`} onClick={nextPage}>→</button>
+                <div className={styles.pageIndicator}>
+                  Page {currentPageIndex + 1} of {selectedItem.images.length}
+                </div>
+              </>
             ) : (
               <Image
                 src={urlFor(selectedItem.image).width(1600).url()}
