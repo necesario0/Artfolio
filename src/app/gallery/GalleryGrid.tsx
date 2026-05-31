@@ -184,7 +184,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
             ) : (
               <Image
                 src={urlFor(selectedItem.image).width(1600).url()}
-                alt={selectedItem.image.alt || selectedItem.title}
+                alt={selectedItem.title}
                 width={1600}
                 height={1600}
                 className={styles.lightboxImage}
@@ -195,4 +195,6 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
       )}
     </>
   );
+}
+);
 }

@@ -42,14 +42,6 @@ export const artworkType = defineType({
       options: {
         hotspot: true,
       },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative Text',
-          validation: (Rule) => Rule.required().error('Alt text is important for accessibility.'),
-        }
-      ],
       validation: (Rule) => Rule.required().error('An image is required for an artwork entry.'),
     }),
     defineField({
