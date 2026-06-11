@@ -5,6 +5,7 @@ import NavbarWrapper from "@/components/NavbarWrapper";
 import Navbar from "@/components/Navbar";
 import { adleryPro, adlerySwash, theSeasons } from "./fonts";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "chilovesyuu",
@@ -24,6 +25,7 @@ export default function RootLayout({
         </Suspense>
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

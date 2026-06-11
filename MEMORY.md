@@ -8,6 +8,7 @@ A serverless artist portfolio built with Next.js, TypeScript, and Vanilla CSS, u
 - **Gallery Enhancements [COMPLETE]**: Dynamic multi-select tag filtering (OR logic) implemented.
 - **Navbar [FIXED]**: Implemented hamburger menu and responsive dropdown for mobile screens.
 - **Performance [OPTIMIZED]**: Lighthouse LCP issues resolved by optimizing font loading and animations.
+- **Analytics & Performance [COMPLETE]**: Vercel Analytics and Speed Insights integrated into the root layout.
 - **Branding [UPDATED]**: Project renamed to **chilovesyuu**.
 
 ## Deployment Plan
