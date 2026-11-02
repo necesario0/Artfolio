@@ -1,6 +1,9 @@
 .hero {
   position: relative;
   height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,14 +154,67 @@
   transform: translateY(0);
 }
 
+.artistProfileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.artistAvatarPlaceholder {
+  margin-bottom: 1.25rem;
+}
+
+.avatarCircle {
+  width: clamp(120px, 20vw, 150px);
+  height: clamp(120px, 20vw, 150px);
+  border-radius: 50%;
+  border: 2px dashed rgba(0, 0, 0, 0.18);
+  background: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a0a0a0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.avatarCircle:hover {
+  border-color: rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  color: #666666;
+}
+
+.avatarIcon {
+  width: 45%;
+  height: 45%;
+}
+
+.artistName {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+.artistLocation {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  color: #666666;
+  margin: 0.5rem 0 0;
+  letter-spacing: 0.02em;
+}
+
 .bioTitle {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 6vw, 2.2rem);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 300;
-  letter-spacing: 0.1em;
-  
-  margin-bottom: 3.5rem;
+  letter-spacing: 0.12em;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
   color: #1a1a1a;
+  text-transform: uppercase;
 }
 
 .bioText {
@@ -166,18 +222,9 @@
   flex-direction: column;
   gap: 2rem;
   line-height: 1.8;
-  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-size: clamp(1.05rem, 2.5vw, 1.2rem);
   color: #4a4a4a;
-}
-
-.softwareHeader {
-  margin-top: 4rem;
-  font-family: var(--font-serif);
-  font-size: clamp(1.1rem, 4vw, 1.2rem);
-  letter-spacing: 0.1em;
-  color: #1a1a1a;
-  margin-bottom: 2rem;
-  font-weight: bold;
+  text-align: left;
 }
 
 .softwareGrid {
@@ -186,7 +233,7 @@
   justify-content: center;
   align-items: center;
   gap: 2.5rem;
-  margin-top: 2rem;
+  margin-top: 3.5rem;
   margin-bottom: -1.5rem;
 }
 
@@ -242,10 +289,10 @@
 
   .softwareGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     justify-items: center;
     gap: 2rem 1.5rem;
-    max-width: 300px;
+    max-width: 320px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -253,5 +300,14 @@
   .softwareLogoWrapper {
     width: 40px;
     height: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }

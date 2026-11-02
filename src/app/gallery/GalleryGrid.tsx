@@ -42,7 +42,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
 
   // Toggle filter logic (Single Select)
   const toggleFilter = (tag: string) => {
-    if (tag === 'All' || activeFilter === tag) {
+    if (activeFilter === tag) {
       setActiveFilter(null);
     } else {
       setActiveFilter(tag);
@@ -51,7 +51,7 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
 
   // Filter artworks based on active filter
   const filteredArtworks = useMemo(() => {
-    if (!activeFilter) return artworks;
+    if (!activeFilter) return [];
     return artworks.filter((artwork) => 
       artwork.tags?.includes(activeFilter)
     );
@@ -99,91 +99,114 @@ export default function GalleryGrid({ artworks }: { artworks: Artwork[] }) {
 
   return (
     <>
-      {/* Filter Bar */}
+      {/* Category Tabs */}
       {uniqueTags.length > 0 && (
-        <div className={styles.filterBar}>
-          <button 
-            className={`${styles.filterButton} ${!activeFilter ? styles.activeFilter : ''}`}
-            onClick={() => toggleFilter('All')}
-          >
-            All
-          </button>
-          {uniqueTags.map((tag) => (
-            <button
-              key={tag}
-              className={`${styles.filterButton} ${activeFilter === tag ? styles.activeFilter : ''}`}
-              onClick={() => toggleFilter(tag)}
-            >
-              {tag}
-            </button>
-          ))}
+        <div className={`${styles.filterContainer} ${!activeFilter ? styles.filterContainerInitial : ''}`}>
+          <div className={styles.filterBar}>
+            {uniqueTags.map((tag) => (
+              <button
+                key={tag}
+                className={`${styles.filterButton} ${activeFilter === tag ? styles.activeFilter : ''}`}
+                onClick={() => toggleFilter(tag)}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+          {!activeFilter && (
+            <p className={styles.categoryPrompt}>Select a category to view artworks</p>
+          )}
         </div>
       )}
 
-      <div className={styles.masonry}>
-        {filteredArtworks.map((artwork, index) => (
-          <div 
-            key={artwork._id} 
-            className={styles.animationWrapper}
-            style={{ 
-              animationDelay: `${index * 0.05}s`,
-              animationName: index < 2 ? 'none' : undefined,
-              opacity: index < 2 ? 1 : undefined,
-              transform: index < 2 ? 'none' : undefined
-            }}
-          >
-            <div 
-              className={styles.card}
-              onClick={() => openLightbox(artwork)}
+      {/* Masonry Grid */}
+      {activeFilter && (
+        <>
+          <div className={styles.activeCategoryHeader}>
+            <h2 className={styles.activeCategoryTitle}>
+              {activeFilter} <span className={styles.artworkCount}>({filteredArtworks.length})</span>
+            </h2>
+            <button 
+              className={styles.clearFilterButton}
+              onClick={() => setActiveFilter(null)}
+              title="Return to all categories"
             >
-              <div className={styles.imageWrapper}>
-                {artwork.type === 'video' && artwork.videoUrl ? (
-                  <video 
-                    src={artwork.videoUrl}
-                    poster={urlFor(artwork.image).width(800).url()}
-                    className={styles.image}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                ) : (
-                  artwork.image && (
-                    <Image
-                      src={urlFor(artwork.image).width(800).url()}
-                      alt={artwork.title}
-                      width={800}
-                      height={1000}
-                      className={styles.image}
-                      priority={index < 4}
-                      loading={index < 4 ? 'eager' : 'lazy'}
-                      sizes="(max-width: 600px) 95vw, (max-width: 900px) 45vw, 30vw"
-                    />
-                  )
-                )}
-                {artwork.type === 'storybook' && (
-                  <div className={styles.tagBadge} style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.6)', color: 'white' }}>
-                    📖 Multiple Images
-                  </div>
-                )}
-              </div>
-              <div className={styles.info}>
-                <h2 className={styles.artworkTitle}>{artwork.title}</h2>
-                <p className={styles.details}>
-                  {artwork.medium} {artwork.year ? `• ${artwork.year}` : ''}
-                </p>
-                {artwork.tags && artwork.tags.length > 0 && (
-                  <div className={styles.tagList}>
-                    {artwork.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className={styles.tagBadge}>{tag}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+              ✕ Clear filter
+            </button>
           </div>
-        ))}
-      </div>
+
+          {filteredArtworks.length > 0 ? (
+            <div className={styles.masonry}>
+              {filteredArtworks.map((artwork, index) => (
+                <div 
+                  key={artwork._id} 
+                  className={styles.animationWrapper}
+                  style={{ 
+                    animationDelay: `${index * 0.05}s`,
+                    animationName: index < 2 ? 'none' : undefined,
+                    opacity: index < 2 ? 1 : undefined,
+                    transform: index < 2 ? 'none' : undefined
+                  }}
+                >
+                  <div 
+                    className={styles.card}
+                    onClick={() => openLightbox(artwork)}
+                  >
+                    <div className={styles.imageWrapper}>
+                      {artwork.type === 'video' && artwork.videoUrl ? (
+                        <video 
+                          src={artwork.videoUrl}
+                          poster={urlFor(artwork.image).width(800).url()}
+                          className={styles.image}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      ) : (
+                        artwork.image && (
+                          <Image
+                            src={urlFor(artwork.image).width(800).url()}
+                            alt={artwork.title}
+                            width={800}
+                            height={1000}
+                            className={styles.image}
+                            priority={index < 4}
+                            loading={index < 4 ? 'eager' : 'lazy'}
+                            sizes="(max-width: 600px) 95vw, (max-width: 900px) 45vw, 30vw"
+                          />
+                        )
+                      )}
+                      {artwork.type === 'storybook' && (
+                        <div className={styles.tagBadge} style={{ position: 'absolute', top: '10px', right: '10px', background: 'rgba(0,0,0,0.6)', color: 'white' }}>
+                          📖 Multiple Images
+                        </div>
+                      )}
+                    </div>
+                    <div className={styles.info}>
+                      <h2 className={styles.artworkTitle}>{artwork.title}</h2>
+                      <p className={styles.details}>
+                        {artwork.medium} {artwork.year ? `• ${artwork.year}` : ''}
+                      </p>
+                      {artwork.tags && artwork.tags.length > 0 && (
+                        <div className={styles.tagList}>
+                          {artwork.tags.slice(0, 3).map(tag => (
+                            <span key={tag} className={styles.tagBadge}>{tag}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.emptyState}>
+              <p>No artworks found under &quot;{activeFilter}&quot;.</p>
+            </div>
+          )}
+        </>
+      )}
 
       {/* Lightbox Modal */}
       {selectedItem && (
