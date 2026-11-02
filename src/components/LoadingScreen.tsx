@@ -12,13 +12,14 @@ export default function LoadingScreen() {
     const hasLoaded = sessionStorage.getItem('hasLoaded');
     
     if (hasLoaded) {
-      setShouldRender(false);
       return;
     }
 
-    // If not shown yet, show it and set the flag
-    setShouldRender(true);
-    sessionStorage.setItem('hasLoaded', 'true');
+    // Schedule render asynchronously to avoid synchronous setState cascading renders
+    const startTimer = setTimeout(() => {
+      setShouldRender(true);
+      sessionStorage.setItem('hasLoaded', 'true');
+    }, 0);
 
     // Start fading out after 0.7 seconds
     const fadeTimer = setTimeout(() => {
@@ -31,6 +32,7 @@ export default function LoadingScreen() {
     }, 1100);
 
     return () => {
+      clearTimeout(startTimer);
       clearTimeout(fadeTimer);
       clearTimeout(removeTimer);
     };

@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 
-export default function Navbar({ commissionsOpen = true }: { commissionsOpen?: boolean }) {
+export default function Navbar({ commissionsOpen: _commissionsOpen = true }: { commissionsOpen?: boolean }) {
+  void _commissionsOpen;
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
